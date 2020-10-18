@@ -30,7 +30,7 @@ public:
     {
         delete mClanTag;
         mClanTag = new char[strlen(n)];
-        strcpy(mClanTag, n);
+        strcpy_s(mClanTag, strlen(n) + 1, n);
     }
 
 protected:

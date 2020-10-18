@@ -11,7 +11,7 @@ public:
     {
         mPosition = position;
         mName = new char[strlen(name)];
-        strcpy(mName, name);
+        strcpy_s(mName, strlen(name) + 1, name);
     }
 
     ~PowerUp()

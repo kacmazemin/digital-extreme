@@ -1,10 +1,10 @@
+#include <stdio.h>
+
 #include "PathNode.h"
 #include "PowerUp.h"
 #include "Weapon.h"
 #include "Health.h"
 #include "Armor.h"
-
-#include <stdio.h>
 
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
