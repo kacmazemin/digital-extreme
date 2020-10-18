@@ -24,7 +24,7 @@ public:
 
     ~PowerUp()
     {
-        delete mName;
+        delete[] mName;
     }
 
     PowerUpType GetPowerUpType() const

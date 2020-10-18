@@ -13,7 +13,7 @@ public:
     }
 
 protected:
-    float healing;
+    float healing = 10.f;
 };
 
 #endif // HEALTH_H

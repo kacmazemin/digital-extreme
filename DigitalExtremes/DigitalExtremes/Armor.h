@@ -17,7 +17,7 @@ public:
 
     ~Armor()
     {
-        delete mClanTag;
+        delete[] mClanTag;
     }
 
     const char* GetClanTag() const
@@ -27,7 +27,7 @@ public:
 
     void SetClanTag(char* n)
     {
-        delete mClanTag;
+        delete[] mClanTag;
         mClanTag = new char[strlen(n)];
         strcpy_s(mClanTag, strlen(n) + 1, n);
     }

@@ -20,11 +20,11 @@ public:
     {
         mName = new char[strlen(name)];
         strcpy_s(mName, strlen(name) + 1, name);
-
     }
 
     ~PathNode()
     {
+        delete[] mName;
     }
 
     void AddLink(PathNode* pathNode)
