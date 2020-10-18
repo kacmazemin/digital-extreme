@@ -13,7 +13,6 @@ public:
         PowerUp(name, position)
     {
         mType = PowerUpType::ARMOUR;
-        mClanTag = NULL;
     }
 
     ~Armor()
@@ -34,7 +33,7 @@ public:
     }
 
 protected:
-    char* mClanTag;
+    char* mClanTag = nullptr;
 };
 
 #endif // ARMOUR_H

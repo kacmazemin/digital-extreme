@@ -67,7 +67,7 @@ public:
 protected:
 
     Vertex mPosition;
-    char* mName;
+    char* mName = nullptr;
 
     PathNodes   mLinks;
     PowerUps    mPowerUps;

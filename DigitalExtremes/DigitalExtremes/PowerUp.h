@@ -17,6 +17,7 @@ public:
     PowerUp(const char* name, const Vertex& position)
     {
         mPosition = position;
+
         mName = new char[strlen(name)];
         strcpy_s(mName, strlen(name) + 1, name);
     }
@@ -39,7 +40,8 @@ public:
 protected:
     Vertex mPosition;
     PowerUpType mType;
-    char* mName;
+
+    char* mName = nullptr;
 };
 
 #endif // POWER_UP_H
