@@ -12,7 +12,7 @@ public:
     Armor(const char* name, const Vertex& position) :
         PowerUp(name, position)
     {
-        mType = ARMOUR;
+        mType = PowerUpType::ARMOUR;
         mClanTag = NULL;
     }
 

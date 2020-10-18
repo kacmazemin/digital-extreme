@@ -9,7 +9,7 @@ public:
     Health(const char* name, const Vertex& position) :
         PowerUp(name, position)
     {
-        mType = HEALTH;
+        mType = PowerUpType::HEALTH;
     }
 
 protected:

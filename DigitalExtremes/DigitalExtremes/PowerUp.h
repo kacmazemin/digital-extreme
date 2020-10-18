@@ -4,6 +4,13 @@
 #include "Vertex.h"
 #include <string.h>
 
+enum class PowerUpType
+{
+    WEAPON,
+    ARMOUR,
+    HEALTH
+};
+
 class PowerUp
 {
 public:
@@ -19,13 +26,6 @@ public:
         delete mName;
     }
 
-    enum PowerUpType
-    {
-        WEAPON,
-        ARMOUR,
-        HEALTH
-    };
-
     PowerUpType GetPowerUpType() const
     {
         return(mType);
@@ -37,7 +37,7 @@ public:
     }
 
 protected:
-    Vertex      mPosition;
+    Vertex mPosition;
     PowerUpType mType;
     char* mName;
 };

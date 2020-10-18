@@ -9,7 +9,7 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
-bool FindPowerUp(PathNodes& path, PowerUp::PowerUpType mType, PathNode* start)
+bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
     /* Example:
     path.push_back(start);
@@ -66,7 +66,7 @@ int main(int, char* [])
 
     PathNodes path;
 
-    if (!FindPowerUp(path, PowerUp::WEAPON, sPathNodes[4]))
+    if (!FindPowerUp(path, PowerUpType::WEAPON, sPathNodes[4]))
     {
         printf("No path found: IMPOSSIBLE!\n");
     }

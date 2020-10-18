@@ -9,7 +9,7 @@ public:
     Weapon(const char* name, const Vertex& position) :
         PowerUp(name, position)
     {
-        mType = WEAPON;
+        mType = PowerUpType::WEAPON;
     }
 };
 
