@@ -28,7 +28,7 @@ public:
     void SetClanTag(char* n)
     {
         delete[] mClanTag;
-        mClanTag = new char[strlen(n)];
+        mClanTag = new char[strlen(n) + 1];
         strcpy_s(mClanTag, strlen(n) + 1, n);
     }
 

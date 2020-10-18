@@ -18,7 +18,7 @@ public:
     PathNode(const char* name, const Vertex& position) :
         mPosition(position)
     {
-        mName = new char[strlen(name)];
+        mName = new char[strlen(name) + 1];
         strcpy_s(mName, strlen(name) + 1, name);
     }
 
