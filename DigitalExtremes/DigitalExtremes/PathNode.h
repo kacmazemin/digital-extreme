@@ -15,7 +15,7 @@ typedef std::vector<PowerUp*> PowerUps;
 class PathNode
 {
 public:
-    PathNode(const char* name, Vertex position) :
+    PathNode(const char* name, const Vertex& position) :
         mPosition(position)
     {
         mName = new char[strlen(name)];
@@ -65,7 +65,8 @@ public:
     }
 
 protected:
-    Vertex      mPosition;
+
+    Vertex mPosition;
     char* mName;
 
     PathNodes   mLinks;

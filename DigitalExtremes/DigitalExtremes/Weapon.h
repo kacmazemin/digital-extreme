@@ -6,7 +6,7 @@
 class Weapon : public PowerUp
 {
 public:
-    Weapon(const char* name, Vertex position) :
+    Weapon(const char* name, const Vertex& position) :
         PowerUp(name, position)
     {
         mType = WEAPON;

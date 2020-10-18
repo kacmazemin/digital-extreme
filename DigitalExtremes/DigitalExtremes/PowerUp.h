@@ -7,7 +7,7 @@
 class PowerUp
 {
 public:
-    PowerUp(const char* name, Vertex position)
+    PowerUp(const char* name, const Vertex& position)
     {
         mPosition = position;
         mName = new char[strlen(name)];

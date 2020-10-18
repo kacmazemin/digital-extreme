@@ -6,7 +6,7 @@
 class Health : public PowerUp
 {
 public:
-    Health(const char* name, Vertex position) :
+    Health(const char* name, const Vertex& position) :
         PowerUp(name, position)
     {
         mType = HEALTH;

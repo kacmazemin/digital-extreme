@@ -7,7 +7,7 @@ struct Vertex
     {
     }
 
-    Vertex(float iX, float iY, float iZ) :
+    Vertex(const float iX, const float iY, const float iZ) :
         x(iX),
         y(iY),
         z(iZ)
