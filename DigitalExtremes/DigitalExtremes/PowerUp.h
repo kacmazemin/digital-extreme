@@ -22,7 +22,7 @@ public:
         strcpy_s(mName, strlen(name) + 1, name);
     }
 
-    ~PowerUp()
+    virtual ~PowerUp()
     {
         delete[] mName;
     }
