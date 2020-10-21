@@ -5,18 +5,25 @@
 #include "Weapon.h"
 #include "Health.h"
 #include "Armor.h"
+#include <math.h>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
 
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
+float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
+{
+    const float a = std::pow((nodeA.GetVertex().x - nodeB.GetVertex().x), 2);
+    const float b = std::pow((nodeA.GetVertex().y - nodeB.GetVertex().y), 2);
+
+    return sqrt(a + b);
+}
+
 bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
-    /* Example:
-    path.push_back(start);
-    path.push_back(secondNode);
-    path.push_back(endNode);
-    return(true);
-    */
+
 
     return(false); // No path found.
 }
@@ -68,6 +75,7 @@ int main(int, char* [])
 
     if (!FindPowerUp(path, PowerUpType::WEAPON, sPathNodes[4]))
     {
+       
         printf("No path found: IMPOSSIBLE!\n");
     }
     else

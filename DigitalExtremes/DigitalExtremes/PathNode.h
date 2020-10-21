@@ -64,6 +64,11 @@ public:
         return(mPowerUps);
     }
 
+    const Vertex& GetVertex() const 
+    {
+        return mPosition;
+    }
+
 protected:
 
     Vertex mPosition;
