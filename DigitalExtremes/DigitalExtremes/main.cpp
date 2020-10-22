@@ -31,6 +31,13 @@ float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
     return sqrt(distX + distY  /*+ distZ */);
 }
 
+
+/**
+Since movement costs vary, I chose Dijkstra. Dijkstra algorithm lets us prioritize which paths to explore.
+Instead of exploring all possible paths equally,
+it favors lower cost paths. We can assign lower
+costs to encourage moving on roads
+*/
 bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
     //The PriorityQueue is created to get the node with the lowest value first.
@@ -160,24 +167,23 @@ int main(int, char* [])
         printf("\n");
     }
 
-    PathNodes path2;
-    PathNodes path3;
-    PathNodes path4;
-    PathNodes path5;
-
     UnitTest* test = new UnitTest();
 
     test->executeTest(path, 1);
 
+    PathNodes path2;
     FindPowerUp(path2, PowerUpType::WEAPON, sPathNodes[6]);
     test->executeTest(path2, 2);
 
+    PathNodes path3;
     FindPowerUp(path3, PowerUpType::ARMOUR, sPathNodes[0]);
     test->executeTest(path3, 3);
 
+    PathNodes path4;
     FindPowerUp(path4, PowerUpType::HEALTH, sPathNodes[3]);
     test->executeTest(path4, 4);
 
+    PathNodes path5;
     test->executeTest(path5, 5);
 
     delete test;

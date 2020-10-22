@@ -20,16 +20,16 @@ void UnitTest::executeTest(const PathNodes& path, const int testNo)
 	switch (testNo)
 	{
 		case 1 : 
-			pathNames = {"Node4","Node7"};
+			pathNames = {"Node4", "Node7"};
 			break;
 		case 2 :
-			pathNames = { "Node6","Node0", "Node4", "Node7"};
+			pathNames = { "Node6", "Node0", "Node4", "Node7"};
 			break;
 		case 3:
-			pathNames = { "Node0","Node4", "Node7", "Node5" };
+			pathNames = { "Node0", "Node4", "Node7", "Node5" };
 			break;
 		case 4:
-			pathNames = { "Node3","Node5", "Node7", "Node4", "Node1" };
+			pathNames = { "Node3", "Node5", "Node7", "Node4", "Node1" };
 			break;
 		case 5:
 			pathNames = {};
