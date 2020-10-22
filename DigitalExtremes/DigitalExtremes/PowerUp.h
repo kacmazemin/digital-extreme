@@ -11,6 +11,20 @@ enum class PowerUpType
     HEALTH
 };
 
+//for test 3
+enum class PowerUpTimeType
+{
+    TEMPORARY,
+    PERMANENT
+};
+
+//for test 3
+enum class PowerUpUsageType
+{
+    IMMEDIATELY,
+    TIMED
+};
+
 class PowerUp
 {
 public:
@@ -25,6 +39,12 @@ public:
     virtual ~PowerUp()
     {
         delete[] mName;
+    }
+
+    //for test 3
+    virtual void usePowerUp()
+    {
+
     }
 
     PowerUpType GetPowerUpType() const
