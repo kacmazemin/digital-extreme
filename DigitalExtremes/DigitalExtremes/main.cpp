@@ -14,6 +14,8 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
+//compare function for priority queue to get the lowest value
+
 auto comparePQ = [&](std::pair<PathNode*, int>& firstNode, std::pair<PathNode*, int>& secondNode)
 {
     return firstNode.second > secondNode.second;
@@ -30,10 +32,16 @@ float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
 
 bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
+    //The PriorityQueue is created to get the node with the lowest value first.
     std::priority_queue < std::pair<PathNode*, int>, std::vector<std::pair<PathNode*, int>>, decltype(comparePQ) > frontier(comparePQ);
 
+    //to keep distance costs
     std::unordered_map<PathNode*, int> costSoFar;
+
+    //to keep the where we came from
     std::unordered_map<PathNode*, PathNode*> cameFrom;
+
+    //for visited indices
     std::unordered_set<PathNode*> visitiedPaths;
 
     cameFrom[start] = start;
@@ -47,11 +55,13 @@ bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 
         frontier.pop();
 
+        //if node is already visited skip it.
         if (visitiedPaths.find(currentNode) != visitiedPaths.end())
         {
             continue;
         }
 
+        //found
         if (currentNode->HasPowerType(mType))
         {
             auto parentNode = currentNode;
@@ -67,16 +77,15 @@ bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
             return true;
         }
 
-
         for (const auto& neighbor : currentNode->GetLinks())
         {
-            auto new_cost = costSoFar[currentNode] + distanceBetweenTwoNode(*currentNode, *neighbor);
+            auto newCost = costSoFar[currentNode] + distanceBetweenTwoNode(*currentNode, *neighbor);
             
-            if (costSoFar.find(neighbor) == costSoFar.end() || new_cost < costSoFar[neighbor]) 
+            if (costSoFar.find(neighbor) == costSoFar.end() || newCost < costSoFar[neighbor]) 
             {
-                costSoFar[neighbor] = new_cost;
+                costSoFar[neighbor] = newCost;
                 cameFrom[neighbor] = currentNode;
-                frontier.push(std::make_pair(neighbor, new_cost));
+                frontier.push(std::make_pair(neighbor, newCost));
             }
         }
 
