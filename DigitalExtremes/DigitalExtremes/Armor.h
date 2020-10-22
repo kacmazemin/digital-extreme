@@ -3,7 +3,6 @@
 
 #include "PowerUp.h"
 
-#include <stddef.h>
 #include <string.h>
 
 class Armor : public PowerUp
