@@ -24,8 +24,8 @@ auto comparePQ = [&](std::pair<PathNode*, int>& firstNode, std::pair<PathNode*, 
 
 float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
 {
-    const float distX = std::pow((nodeA.GetVertex().x - nodeB.GetVertex().x), 2);
-    const float distY = std::pow((nodeA.GetVertex().y - nodeB.GetVertex().y), 2);
+    const float distX = std::pow((nodeA.GetPosition().x - nodeB.GetPosition().x), 2);
+    const float distY = std::pow((nodeA.GetPosition().y - nodeB.GetPosition().y), 2);
     //const float distZ = std::pow((nodeA.GetVertex().z - nodeB.GetVertex().z), 2); Since all nodes on same z coordinate, no need to calculate.
 
     return sqrt(distX + distY  /*+ distZ */);

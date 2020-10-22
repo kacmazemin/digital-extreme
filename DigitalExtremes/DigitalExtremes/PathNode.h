@@ -65,7 +65,7 @@ public:
         return(mPowerUps);
     }
 
-    const Vertex& GetVertex() const 
+    const Vertex& GetPosition() const 
     {
         return mPosition;
     }
