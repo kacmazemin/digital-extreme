@@ -14,7 +14,7 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
-auto myComp = [&](std::pair<PathNode*, int>& firstNode, std::pair<PathNode*, int>& secondNode)
+auto comparePQ = [&](std::pair<PathNode*, int>& firstNode, std::pair<PathNode*, int>& secondNode)
 {
     return firstNode.second > secondNode.second;
 };
@@ -30,7 +30,7 @@ float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
 
 bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
-    std::priority_queue < std::pair<PathNode*, int>, std::vector<std::pair<PathNode*, int>>, decltype(myComp) > frontier(myComp);
+    std::priority_queue < std::pair<PathNode*, int>, std::vector<std::pair<PathNode*, int>>, decltype(comparePQ) > frontier(comparePQ);
 
     std::unordered_map<PathNode*, int> costSoFar;
     std::unordered_map<PathNode*, PathNode*> cameFrom;
