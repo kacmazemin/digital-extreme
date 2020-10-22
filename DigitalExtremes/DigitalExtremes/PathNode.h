@@ -2,6 +2,7 @@
 #define PATH_NODE_H
 
 #include "Vertex.h"
+#include "PowerUp.h"
 
 #include <vector>
 #include <algorithm>
@@ -67,6 +68,18 @@ public:
     const Vertex& GetVertex() const 
     {
         return mPosition;
+    }
+
+    bool HasPowerType (PowerUpType powerUpType)
+    {
+        for (const auto& powerUp : mPowerUps)
+        {
+            if (powerUpType == powerUp->GetPowerUpType())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 protected:

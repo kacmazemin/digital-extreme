@@ -14,21 +14,28 @@
 static PathNodes sPathNodes;
 static PowerUps sPowerUps;
 
-
-std::unordered_map<PathNode*, int> costSoFar;
-std::unordered_map<PathNode*, PathNode*> cameFrom;
-std::priority_queue< std::pair<PathNode*, int>, std::vector<std::pair<PathNode*, int>>, std::greater<std::pair<PathNode*, int>> > frontier;
+auto myComp = [&](std::pair<PathNode*, int>& firstNode, std::pair<PathNode*, int>& secondNode)
+{
+    return firstNode.second > secondNode.second;
+};
 
 float distanceBetweenTwoNode(const PathNode& nodeA, const PathNode& nodeB)
 {
-    const float a = std::pow((nodeA.GetVertex().x - nodeB.GetVertex().x), 2);
-    const float b = std::pow((nodeA.GetVertex().y - nodeB.GetVertex().y), 2);
+    const float distX = std::pow((nodeA.GetVertex().x - nodeB.GetVertex().x), 2);
+    const float distY = std::pow((nodeA.GetVertex().y - nodeB.GetVertex().y), 2);
+    //const float distZ = std::pow((nodeA.GetVertex().z - nodeB.GetVertex().z), 2); Since all nodes on same z coordinate, no need to calculate.
 
-    return sqrt(a + b);
+    return sqrt(distX + distY  /*+ distZ */);
 }
 
 bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
 {
+    std::priority_queue < std::pair<PathNode*, int>, std::vector<std::pair<PathNode*, int>>, decltype(myComp) > frontier(myComp);
+
+    std::unordered_map<PathNode*, int> costSoFar;
+    std::unordered_map<PathNode*, PathNode*> cameFrom;
+    std::unordered_set<PathNode*> visitiedPaths;
+
     cameFrom[start] = start;
     costSoFar[start] = 0;
 
@@ -37,9 +44,28 @@ bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
     while (!frontier.empty()) {
 
         PathNode* currentNode = frontier.top().first;
+
         frontier.pop();
 
-        printf("TOP %s \n" , currentNode->GetName());
+        if (visitiedPaths.find(currentNode) != visitiedPaths.end())
+        {
+            continue;
+        }
+
+        if (currentNode->HasPowerType(mType))
+        {
+            auto parentNode = currentNode;
+
+            while (parentNode != start )
+            {
+                path.push_back(parentNode);
+                parentNode = cameFrom[parentNode];
+            }
+            path.push_back(start);
+
+            std::reverse(path.begin(), path.end());
+            return true;
+        }
 
 
         for (const auto& neighbor : currentNode->GetLinks())
@@ -50,11 +76,11 @@ bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
             {
                 costSoFar[neighbor] = new_cost;
                 cameFrom[neighbor] = currentNode;
-                frontier.push(std::make_pair(currentNode, new_cost));
+                frontier.push(std::make_pair(neighbor, new_cost));
             }
         }
 
-      //  visitedNode.insert(currentNode);
+        visitiedPaths.insert(currentNode);
     }
 
     return(false); // No path found.
@@ -105,24 +131,6 @@ int main(int, char* [])
 
     PathNodes path;
 
-
-
-    //for (const auto& x : sPathNodes[5]->GetLinks())
-    //{
-    //    
-    //    printf("%s ", x->GetName());
-    //    printf("X : %d ", (int)x->GetVertex().x);
-    //    printf("Y : %d ", (int)x->GetVertex().y);
-    //    printf("Z : %d ", (int)x->GetVertex().z);
-
-    //    printf("DISTANCE %f", distanceBetweenTwoNode(*sPathNodes[5], *x));
-
-    //    
-    //    printf("\n");
-    //}
-
-
-
     if (!FindPowerUp(path, PowerUpType::WEAPON, sPathNodes[4]))
     {
        
@@ -141,10 +149,6 @@ int main(int, char* [])
         printf("\n");
     }
 
-    for (const auto& x : costSoFar)
-    {
-        printf("%s <-> %d \n", x.first->GetName(), x.second);
-    }
 
     return(0);
 }
