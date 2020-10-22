@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="PathNode.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="UnitTest.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

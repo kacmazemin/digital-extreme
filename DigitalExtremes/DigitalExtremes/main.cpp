@@ -6,6 +6,7 @@
 #include "Weapon.h"
 #include "Health.h"
 #include "Armor.h"
+#include "UnitTest.h"
 #include <math.h>
 #include <queue>
 #include <unordered_map>
@@ -73,7 +74,9 @@ bool FindPowerUp(PathNodes& path, PowerUpType mType, PathNode* start)
             }
             path.push_back(start);
 
+            //since it is backwards path I call reverse
             std::reverse(path.begin(), path.end());
+
             return true;
         }
 
@@ -142,7 +145,6 @@ int main(int, char* [])
 
     if (!FindPowerUp(path, PowerUpType::WEAPON, sPathNodes[4]))
     {
-       
         printf("No path found: IMPOSSIBLE!\n");
     }
     else
@@ -158,6 +160,27 @@ int main(int, char* [])
         printf("\n");
     }
 
+    PathNodes path2;
+    PathNodes path3;
+    PathNodes path4;
+    PathNodes path5;
+
+    UnitTest* test = new UnitTest();
+
+    test->executeTest(path, 1);
+
+    FindPowerUp(path2, PowerUpType::WEAPON, sPathNodes[6]);
+    test->executeTest(path2, 2);
+
+    FindPowerUp(path3, PowerUpType::ARMOUR, sPathNodes[0]);
+    test->executeTest(path3, 3);
+
+    FindPowerUp(path4, PowerUpType::HEALTH, sPathNodes[3]);
+    test->executeTest(path4, 4);
+
+    test->executeTest(path5, 5);
+
+    delete test;
 
     return(0);
 }
